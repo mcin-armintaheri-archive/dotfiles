@@ -7,9 +7,14 @@ alias ls='ls --color'
 export TERM=xterm-256color
 # Git branch in prompt.
 
- parse_git_branch() {
-     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
- }
+parse_git_branch() {
+    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+}
+
+edf() {
+    $HOME/local/bin/emacs $* 2> /dev/null &
+    disown
+}
 
 txtblk='\e[0;30m' # Black - Regular
 txtred='\e[0;31m' # Red
