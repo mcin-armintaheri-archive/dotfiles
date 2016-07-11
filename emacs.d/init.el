@@ -14,11 +14,13 @@
 (defvar my-packages
   '(arjen-grey-theme
     auto-complete
+    autopair
     ensime
     evil
     evil-magit
     evil-paredit
     exec-path-from-shell
+    fill-column-indicator
     flycheck
     flycheck-flow
     go-complete
@@ -50,9 +52,12 @@
           '(progn ,@body)))
 
 ;;;; generic
+(require 'autopair)
+(autopair-global-mode 1)
+(setq autopair-autowrap t)
+(desktop-save-mode 1)
 (setq is-mac (equal system-type 'darwin))
 (add-to-list 'load-path (concat user-emacs-directory "config"))
-(desktop-save-mode 1)
 ; Better word wrapping
 (visual-line-mode 1)
 ; Simpler title
@@ -162,6 +167,9 @@
 
 (when window-system (set-exec-path-from-shell-PATH))
 
+;;;; fill-column-indicator
+(add-hook 'emacs-lisp-mode-hook (lambda ()
+    (fci-mode 1)))
 ;;;; evil
 (after "evil-autoloads"
     (evil-mode 1)
@@ -311,3 +319,5 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+
