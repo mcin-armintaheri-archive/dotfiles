@@ -2,6 +2,14 @@
 
 #Set our umask
 umask 022
+if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
+    export SESSION_TYPE=remote/ssh
+# many other tests omitted
+else
+    case $(ps -o comm= -p $PPID) in
+       sshd|*/sshd) export SESSION_TYPE=remote/ssh;;
+    esac
+fi
 
 # Set our default path
 PATH="/bin:/usr/local/sbin:/usr/local/bin:/usr/bin"

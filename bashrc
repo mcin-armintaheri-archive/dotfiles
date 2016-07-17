@@ -56,7 +56,13 @@ txtrst='\e[0m'    # Text Reset
 
 #PS1='[\u@\h \W]\$ '
 #TLL=$(tput cup "$LINES")
-PS1="\[$txtgrn\][\u]\[$txtpur\][\h]\[$txtylw\][\W]"
+PS1="\[$txtgrn\][\u]"
+if [[ SESSION_TYPE == "remote/ssh" ]]; then
+    PS1="$PS1\[$txtred\][\h]"
+else
+    PS1="$PS1\[$txtpur\][\h]"
+fi
+PS1="$PS1\[$txtylw\][\W]"
 PS1="$PS1\[$txtcyn\] ::\$(parse_git_branch)"
 PS1="$PS1\n\[$txtcyn\]\$\[$txtrst\] "
 PS2='> '
