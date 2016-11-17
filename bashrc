@@ -86,6 +86,8 @@ export PATH="$HOME/local/bin:$PATH"
 # export node path
 export PATH="$HOME/local/node/bin:$HOME/local/npm-global/bin:$HOME/.local/npm-global/bin:$PATH"
 
+export NODE_PATH="$HOME/local/npm-global/lib/node_modules"
+
 export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
 # added by Anaconda3 2.5.0 installer
