@@ -52,6 +52,8 @@
   (when (not (package-installed-p p))
     (package-install p)))
 
+(tool-bar-mode 0)
+
 ;; Evil Mode
 (require 'evil)
   (evil-mode 1)
