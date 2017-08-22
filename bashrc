@@ -16,6 +16,10 @@ edf() {
     disown
 }
 
+ihsk() {
+    docker run -it --volume $(pwd):/ihaskell_notebooks --publish 8888:8888 gibiansky/ihaskell:latest
+}
+
 txtblk='\e[0;30m' # Black - Regular
 txtred='\e[0;31m' # Red
 txtgrn='\e[0;32m' # Green
@@ -79,16 +83,14 @@ case ${TERM} in
     ;;
 esac
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 [ -r /usr/share/bash-completion/bash_completion   ] && . /usr/share/bash-completion/bash_completion
-export PATH="$HOME/local/bin:$PATH"
+export PATH="$HOME/local/bin:$HOME/.local/bin:$PATH"
 
 # export node path
 export PATH="$HOME/local/node/bin:$HOME/local/npm-global/bin:$HOME/.local/npm-global/bin:$PATH"
 
 export NODE_PATH="$HOME/local/npm-global/lib/node_modules"
 
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
 
 # added by Anaconda3 2.5.0 installer
 export PATH="$HOME/local/Anaconda/bin:$PATH"
@@ -96,8 +98,8 @@ export PATH="$HOME/local/Anaconda/bin:$PATH"
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
 
-# Cabal path
-export PATH="$HOME/.cabal/bin:$PATH"
+# Haskell path
+export PATH="$HOME/.stack/programs/x86_64-linux/ghc-8.0.2/bin:/opt/cabal/1.22/bin:/opt/ghc/7.10.3/bin:$HOME/.cabal/bin::$PATH"
 
 # Filewell tools
 export PATH="$PATH:~/plotly/streambed/shelly/filewell/bin/"
@@ -107,6 +109,12 @@ export GOROOT="$HOME/local/go"
 export PATH="$PATH:$HOME/local/go/bin"
 export GOPATH="$HOME/.go_modules/"
 export PATH="$PATH:$GOPATH/bin"
+
+# asdf version manager
+if [[ -e $HOME/repos/asdf ]]; then
+  . $HOME/repos/asdf/asdf.sh
+  . $HOME/repos/asdf/completions/asdf.bash
+fi
 
 export BOOT_CLOJURE_VERSION="1.8.0"
 
