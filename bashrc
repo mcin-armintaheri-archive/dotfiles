@@ -87,7 +87,7 @@ esac
 export PATH="$HOME/local/bin:$HOME/.local/bin:$PATH"
 
 # export node path
-export PATH="$HOME/local/node/bin:$HOME/local/npm-global/bin:$HOME/.local/npm-global/bin:$PATH"
+export PATH="$HOME/node/bin:$PATH"
 
 export NODE_PATH="$HOME/local/npm-global/lib/node_modules"
 
